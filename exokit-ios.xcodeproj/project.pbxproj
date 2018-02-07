@@ -1335,7 +1335,7 @@
 					"${PROJECT_DIR}/exokit-ios/deps/exokit-bindings/webglcontext/include",
 					"${PROJECT_DIR}/exokit-ios/deps/exokit-bindings/platform/ios/include",
 				);
-				INFOPLIST_FILE = ARExample/Info.plist;
+				INFOPLIST_FILE = "exokit-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exokit.exokit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1364,7 +1364,7 @@
 					"${PROJECT_DIR}/exokit-ios/deps/exokit-bindings/webglcontext/include",
 					"${PROJECT_DIR}/exokit-ios/deps/exokit-bindings/platform/macos/include",
 				);
-				INFOPLIST_FILE = ARExample/Info.plist;
+				INFOPLIST_FILE = "exokit-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exokit.exokit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
