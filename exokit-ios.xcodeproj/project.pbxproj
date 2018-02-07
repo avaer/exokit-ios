@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		DF1642441F0CDFD70009DE88 /* ARExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF1642441F0CDFD70009DE88 /* exokit-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "exokit-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1642471F0CDFD70009DE88 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DF1642481F0CDFD70009DE88 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DF16424A1F0CDFD70009DE88 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 		DF16423B1F0CDFD70009DE88 = {
 			isa = PBXGroup;
 			children = (
-				DF1642461F0CDFD70009DE88 /* ARExample */,
+				DF1642461F0CDFD70009DE88 /* exokit-ios */,
 				DF1642451F0CDFD70009DE88 /* Products */,
 				8A76C1DB1CDDA5F567B47895 /* Frameworks */,
 			);
@@ -72,12 +72,12 @@
 		DF1642451F0CDFD70009DE88 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DF1642441F0CDFD70009DE88 /* ARExample.app */,
+				DF1642441F0CDFD70009DE88 /* exokit-ios.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DF1642461F0CDFD70009DE88 /* ARExample */ = {
+		DF1642461F0CDFD70009DE88 /* exokit-ios */ = {
 			isa = PBXGroup;
 			children = (
 				DF8FFAA11F87D942003004E0 /* GLProgram.h */,
@@ -98,15 +98,15 @@
 				DF1642621F0CE8B90009DE88 /* Camera.vsh */,
 				DF1642601F0CE8AD0009DE88 /* Camera.fsh */,
 			);
-			path = ARExample;
+			path = "exokit-ios";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DF1642431F0CDFD70009DE88 /* ARExample */ = {
+		DF1642431F0CDFD70009DE88 /* exokit-ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DF16425A1F0CDFD70009DE88 /* Build configuration list for PBXNativeTarget "ARExample" */;
+			buildConfigurationList = DF16425A1F0CDFD70009DE88 /* Build configuration list for PBXNativeTarget "exokit-ios" */;
 			buildPhases = (
 				DF1642401F0CDFD70009DE88 /* Sources */,
 				DF1642411F0CDFD70009DE88 /* Frameworks */,
@@ -116,9 +116,9 @@
 			);
 			dependencies = (
 			);
-			name = ARExample;
+			name = "exokit-ios";
 			productName = ARExample;
-			productReference = DF1642441F0CDFD70009DE88 /* ARExample.app */;
+			productReference = DF1642441F0CDFD70009DE88 /* exokit-ios.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -136,7 +136,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DF16423F1F0CDFD70009DE88 /* Build configuration list for PBXProject "ARExample" */;
+			buildConfigurationList = DF16423F1F0CDFD70009DE88 /* Build configuration list for PBXProject "exokit-ios" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -149,7 +149,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DF1642431F0CDFD70009DE88 /* ARExample */,
+				DF1642431F0CDFD70009DE88 /* exokit-ios */,
 			);
 		};
 /* End PBXProject section */
@@ -342,7 +342,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DF16423F1F0CDFD70009DE88 /* Build configuration list for PBXProject "ARExample" */ = {
+		DF16423F1F0CDFD70009DE88 /* Build configuration list for PBXProject "exokit-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DF1642581F0CDFD70009DE88 /* Debug */,
@@ -351,7 +351,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DF16425A1F0CDFD70009DE88 /* Build configuration list for PBXNativeTarget "ARExample" */ = {
+		DF16425A1F0CDFD70009DE88 /* Build configuration list for PBXNativeTarget "exokit-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DF16425B1F0CDFD70009DE88 /* Debug */,
