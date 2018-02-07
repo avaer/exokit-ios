@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A1F675C202B886E00113F90 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F675B202B886E00113F90 /* main.cpp */; };
+		0ABCD84A202BB80E0022BBF3 /* NodeMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACDC3A8202BB62F00E533FA /* NodeMobile.framework */; };
+		0ABCD84B202BB80E0022BBF3 /* NodeMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACDC3A8202BB62F00E533FA /* NodeMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ACDC381202BA1DD00E533FA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACDC380202BA1DD00E533FA /* QuartzCore.framework */; };
 		0ACDCBAE202B989700E4C0F9 /* webgl.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDCA8D202B989700E4C0F9 /* webgl.cc */; };
 		0ACDCBAF202B989700E4C0F9 /* ContextQuartz2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ACDCA9C202B989700E4C0F9 /* ContextQuartz2D.cpp */; };
@@ -48,9 +50,24 @@
 		DF8FFAA21F87D942003004E0 /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8FFAA01F87D941003004E0 /* GLProgram.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0ABCD84C202BB80E0022BBF3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0ABCD84B202BB80E0022BBF3 /* NodeMobile.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0A1F675B202B886E00113F90 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		0ACDC380202BA1DD00E533FA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0ACDC3A8202BB62F00E533FA /* NodeMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NodeMobile.framework; sourceTree = "<group>"; };
 		0ACDCA8B202B989700E4C0F9 /* webgl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webgl.h; sourceTree = "<group>"; };
 		0ACDCA8D202B989700E4C0F9 /* webgl.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = webgl.cc; sourceTree = "<group>"; };
 		0ACDCA90202B989700E4C0F9 /* defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = defines.h; sourceTree = "<group>"; };
@@ -314,15 +331,25 @@
 			files = (
 				0ACDC381202BA1DD00E533FA /* QuartzCore.framework in Frameworks */,
 				0ACDCBCC202B9E6600E4C0F9 /* OpenGLES.framework in Frameworks */,
+				0ABCD84A202BB80E0022BBF3 /* NodeMobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0ACDC3A7202BB62F00E533FA /* node-mobile */ = {
+			isa = PBXGroup;
+			children = (
+				0ACDC3A8202BB62F00E533FA /* NodeMobile.framework */,
+			);
+			path = "node-mobile";
+			sourceTree = "<group>";
+		};
 		0ACDCA87202B989700E4C0F9 /* deps */ = {
 			isa = PBXGroup;
 			children = (
+				0ACDC3A7202BB62F00E533FA /* node-mobile */,
 				0ACDCA88202B989700E4C0F9 /* exokit-bindings */,
 			);
 			path = deps;
@@ -1096,6 +1123,7 @@
 				DF1642401F0CDFD70009DE88 /* Sources */,
 				DF1642411F0CDFD70009DE88 /* Frameworks */,
 				DF1642421F0CDFD70009DE88 /* Resources */,
+				0ABCD84C202BB80E0022BBF3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1323,6 +1351,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A26A4V3B6T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/exokit-ios/deps/node-mobile",
+				);
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					"${PROJECT_DIR}/exokit-ios/deps/exokit-bindings",
 					"${PROJECT_DIR}/exokit-ios/deps/exokit-bindings/node",
@@ -1352,6 +1384,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A26A4V3B6T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/exokit-ios/deps/node-mobile",
+				);
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					"${PROJECT_DIR}/exokit-ios/deps/exokit-bindings",
 					"${PROJECT_DIR}/exokit-ios/deps/exokit-bindings/node",
