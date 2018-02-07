@@ -310,8 +310,8 @@ static const size_t kAlignedInstanceUniformsSize = ((sizeof(InstanceUniforms) * 
     // Update the shared uniforms of the frame
     SharedUniforms *uniforms = (SharedUniforms *)_sharedUniformBufferAddress;
     
-    uniforms->viewMatrix = matrix_invert(frame.camera.transform);
-    uniforms->projectionMatrix = [frame.camera projectionMatrixForOrientation:UIInterfaceOrientationLandscapeRight
+    uniforms->viewMatrix = [frame.camera viewMatrixForOrientation:UIInterfaceOrientationPortrait];
+    uniforms->projectionMatrix = [frame.camera projectionMatrixForOrientation:UIInterfaceOrientationPortrait
                                                                  viewportSize:_sceneSize
                                                                         zNear:0.001
                                                                          zFar:1000];
