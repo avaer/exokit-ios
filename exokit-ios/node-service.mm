@@ -509,7 +509,7 @@ void redirectStdioToLog() {
     while ((nBytes = read(pfd0, buf, sizeof buf - 1)) > 0) {
       if (buf[nBytes - 1] == '\n') --nBytes;
       buf[nBytes] = 0;
-      // LOGI("%s", buf);
+      NSLog(@"%s", buf);
     }
   }, pfd[0]).detach();
 }
@@ -518,22 +518,10 @@ void redirectStdioToLog() {
 #ifdef __cplusplus
 extern "C" {
 #endif
-/* JNIEXPORT void JNICALL Java_com_mafintosh_nodeonandroid_NodeService_onSurfaceCreated
-(JNIEnv *env, jclass clas) {
-	LOGI("JNI onSurfaceCreated");
-
-  queueServiceUiThread([&]() {
-    HandleScope handle_scope(service->GetIsolate());
-
-    Local<Value> argv[] = {};
-    callFunction("onSurfaceCreated", sizeof(argv)/sizeof(argv[0]), argv);
-  });
-} */
-
 /* This does double duty as both the init and displaychanged function.
  * Signature: (II)V
  */
-void Java_com_mafintosh_nodeonandroid_NodeService_onResize
+void NodeService_onResize
 (int width, int height) {
 	// LOGI("JNI onResize %d %d", width, height);
 
@@ -549,7 +537,7 @@ void Java_com_mafintosh_nodeonandroid_NodeService_onResize
 }
 
 
-void Java_com_mafintosh_nodeonandroid_NodeService_onNewFrame
+void NodeService_onNewFrame
 (float headViewMatrixElements[], float headQuaternionElements[], float centerArrayElements[]) {
   queueServiceUiThread([&]() {
     HandleScope handle_scope(service->GetIsolate());
@@ -572,7 +560,7 @@ void Java_com_mafintosh_nodeonandroid_NodeService_onNewFrame
 }
 
 
-void Java_com_mafintosh_nodeonandroid_NodeService_onDrawEye
+void NodeService_onDrawEye
 (float eyeViewMatrixElements[], float eyePerspectiveMatrixElements[]) {
   queueServiceUiThread([&]() {
     HandleScope handle_scope(service->GetIsolate());
@@ -590,7 +578,7 @@ void Java_com_mafintosh_nodeonandroid_NodeService_onDrawEye
   });
 }
 
-void Java_com_mafintosh_nodeonandroid_NodeService_onDrawFrame
+void NodeService_onDrawFrame
 (float viewMatrixElements[], float projectionMatrixElements[], float centerArrayElements[]) {
   queueServiceUiThread([&]() {
     HandleScope handle_scope(service->GetIsolate());
@@ -612,82 +600,8 @@ void Java_com_mafintosh_nodeonandroid_NodeService_onDrawFrame
   });
 }
 
-/* // NOTE: must be called from the render thread. Multiple threads accessing
-// isolate will cause crash.
-JNIEXPORT void JNICALL Java_com_mafintosh_nodeonandroid_GlesJSLib_onTouchEvent
-(JNIEnv *env, jclass clas, jint ptrid, jdouble x, jdouble y,
-jboolean press, jboolean release) {
-	//LOGI("JNI onTouchEvent");
-	Isolate::Scope isolate_scope(service->GetIsolate());
-	HandleScope handle_scope(service->GetIsolate());
-	// jnienv = env;
-	// pass new coords before passing up/down
-	// pass coords to JS
-	Handle<Value> js_ptrid = v8::Integer::New(service->GetIsolate(), ptrid);
-	Handle<Value> js_x = v8::Integer::New(service->GetIsolate(), x);
-	Handle<Value> js_y = v8::Integer::New(service->GetIsolate(), y);
-	const int argc3 = 3;
-	Local<Value> argv3[argc3] = { js_ptrid, js_x, js_y };
-	callFunction("_mouseMoveCallback",argc3,argv3);
-	if (press) {
-		// start touch
-		// pass event to JS
-		const int argc1 = 1;
-		Local<Value> argv1[argc1] = { js_ptrid };
-		callFunction("_mouseDownCallback",argc1,argv1);
-	}
-	if (release) {
-		// end touch
-		// pass event to JS
-		const int argc2 = 1;
-		Local<Value> argv2[argc2] = { js_ptrid };
-		callFunction("_mouseUpCallback",argc2,argv2);
-	}
-}
-
-JNIEXPORT void JNICALL Java_com_mafintosh_nodeonandroid_GlesJSLib_onMultitouchCoordinates
-(JNIEnv * env, jclass clas, jint ptrid, jdouble x, jdouble y) {
-	//LOGI("JNI MultitouchCoordinates");
-	Isolate::Scope isolate_scope(service->GetIsolate());
-	HandleScope handle_scope(service->GetIsolate());
-	// jnienv = env;
-	// pass coords to JS
-	Handle<Value> js_ptrid = v8::Integer::New(service->GetIsolate(), ptrid);
-	Handle<Value> js_x = v8::Integer::New(service->GetIsolate(), x);
-	Handle<Value> js_y = v8::Integer::New(service->GetIsolate(), y);
-	const int argc = 3;
-	Local<Value> argv[argc] = { js_ptrid, js_x, js_y };
-	callFunction("_touchCoordinatesCallback",argc,argv);
-}
-
-
-JNIEXPORT void JNICALL Java_com_mafintosh_nodeonandroid_NodeService_startNode__Ljava_lang_String_2Ljava_lang_String_2
-(JNIEnv *env, jobject thiz, jstring jsPath, jstring port) {
-  const char *nodeString = "node";
-  const char *jsPathString = env->GetStringUTFChars(jsPath, NULL);
-  const char *portString = env->GetStringUTFChars(port, NULL);
-  char argsString[4096];
-  int i = 0;
-
-  char *nodeArg = argsString + i;
-  strncpy(nodeArg, nodeString, sizeof(argsString) - i);
-  i += strlen(nodeString) + 1;
-
-  char *jsPathArg = argsString + i;
-  strncpy(jsPathArg, jsPathString, sizeof(argsString) - i);
-  i += strlen(jsPathString) + 1;
-
-  char *portArg = argsString + i;
-  strncpy(portArg, portString, sizeof(argsString) - i);
-  i += strlen(portString) + 1;
-
-  char *args[3] = {nodeArg, jsPathArg, portArg};
-  node::Start(3, args);
-} */
-
-
 std::function<void (node::NodeService *nodeService)> nodeServiceInitFunction;
-void Java_com_mafintosh_nodeonandroid_NodeService_start
+void NodeService_start
 (const char *binPathString, const char *jsPathString, const char *libPathString, const char *urlString, const char *vrModeString, int vrTexture) {
   redirectStdioToLog();
 
@@ -759,16 +673,10 @@ void Java_com_mafintosh_nodeonandroid_NodeService_start
   nodeServiceInitFunction = nopFunction;
 }
 
-void Java_com_mafintosh_nodeonandroid_NodeService_tick
+void NodeService_tick
 (int timeout) {
   service->Tick(timeout);
 }
-
-/* JNIEXPORT void JNICALL Java_com_mafintosh_nodeonandroid_NodeService_loop
-(JNIEnv *env, jobject thiz) {
-  service->Loop();
-} */
-
 
 #ifdef __cplusplus
 }

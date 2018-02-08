@@ -17,6 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NodeService_start("node", "html5.js", "lib", "http://192.168.0.13:8000", "ar", 0);
     return YES;
 }
 

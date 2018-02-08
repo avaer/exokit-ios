@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A1F675C202B886E00113F90 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F675B202B886E00113F90 /* main.cpp */; };
+		0A1F675C202B886E00113F90 /* node-service.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F675B202B886E00113F90 /* node-service.mm */; };
 		0ABCD84A202BB80E0022BBF3 /* NodeMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACDC3A8202BB62F00E533FA /* NodeMobile.framework */; };
 		0ABCD84B202BB80E0022BBF3 /* NodeMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACDC3A8202BB62F00E533FA /* NodeMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0ACDC381202BA1DD00E533FA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACDC380202BA1DD00E533FA /* QuartzCore.framework */; };
@@ -65,7 +65,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0A1F675B202B886E00113F90 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		0A1F675B202B886E00113F90 /* node-service.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "node-service.mm"; sourceTree = "<group>"; };
+		0ABCD851202BC5940022BBF3 /* node-service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "node-service.h"; sourceTree = "<group>"; };
 		0ACDC380202BA1DD00E533FA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0ACDC3A8202BB62F00E533FA /* NodeMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NodeMobile.framework; sourceTree = "<group>"; };
 		0ACDCA8B202B989700E4C0F9 /* webgl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webgl.h; sourceTree = "<group>"; };
@@ -1090,8 +1091,9 @@
 		DF1642461F0CDFD70009DE88 /* exokit-ios */ = {
 			isa = PBXGroup;
 			children = (
+				0ABCD851202BC5940022BBF3 /* node-service.h */,
 				0ACDCA87202B989700E4C0F9 /* deps */,
-				0A1F675B202B886E00113F90 /* main.cpp */,
+				0A1F675B202B886E00113F90 /* node-service.mm */,
 				DF8FFAA11F87D942003004E0 /* GLProgram.h */,
 				DF8FFAA01F87D941003004E0 /* GLProgram.m */,
 				DF1642471F0CDFD70009DE88 /* AppDelegate.h */,
@@ -1201,7 +1203,7 @@
 				DF16424C1F0CDFD70009DE88 /* ViewController.m in Sources */,
 				0ACDCBBA202B989700E4C0F9 /* FloydSteinberg.cpp in Sources */,
 				DF16425F1F0CE0360009DE88 /* ARRenderer.m in Sources */,
-				0A1F675C202B886E00113F90 /* main.cpp in Sources */,
+				0A1F675C202B886E00113F90 /* node-service.mm in Sources */,
 				0ACDCBC1202B989700E4C0F9 /* canvas-context.cc in Sources */,
 				DF8FFAA21F87D942003004E0 /* GLProgram.m in Sources */,
 				0ACDCBAE202B989700E4C0F9 /* webgl.cc in Sources */,

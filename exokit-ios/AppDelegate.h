@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "node-service.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
