@@ -37,6 +37,7 @@
 		0ACFE84D202D22EC0088926D /* NodeMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACFE84B202D22EC0088926D /* NodeMobile.framework */; };
 		0ACFE84F202D23890088926D /* NodeMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACFE84B202D22EC0088926D /* NodeMobile.framework */; };
 		0ACFE850202D23890088926D /* NodeMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACFE84B202D22EC0088926D /* NodeMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0AE2B93C202D3B4000DBF4BF /* html5.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AE2B93B202D3B4000DBF4BF /* html5.js */; };
 		DF1642491F0CDFD70009DE88 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1642481F0CDFD70009DE88 /* AppDelegate.m */; };
 		DF16424C1F0CDFD70009DE88 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF16424B1F0CDFD70009DE88 /* ViewController.m */; };
 		DF16424F1F0CDFD70009DE88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF16424D1F0CDFD70009DE88 /* Main.storyboard */; };
@@ -321,6 +322,7 @@
 		0ACDCBCB202B9E6600E4C0F9 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		0ACFE83A202D14C20088926D /* v8-platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "v8-platform.h"; sourceTree = "<group>"; };
 		0ACFE84B202D22EC0088926D /* NodeMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NodeMobile.framework; sourceTree = "<group>"; };
+		0AE2B93B202D3B4000DBF4BF /* html5.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = html5.js; sourceTree = "<group>"; };
 		DF1642441F0CDFD70009DE88 /* exokit-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "exokit-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1642471F0CDFD70009DE88 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DF1642481F0CDFD70009DE88 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1175,6 +1177,7 @@
 				DF1642641F0E15E60009DE88 /* Anchor.vsh */,
 				DF1642621F0CE8B90009DE88 /* Camera.vsh */,
 				DF1642601F0CE8AD0009DE88 /* Camera.fsh */,
+				0AE2B93B202D3B4000DBF4BF /* html5.js */,
 			);
 			path = "exokit-ios";
 			sourceTree = "<group>";
@@ -1251,6 +1254,7 @@
 				0A9494F2202D03D5009085C7 /* config.gypi in Resources */,
 				DF1642671F0E15EE0009DE88 /* Anchor.fsh in Resources */,
 				0A9494F4202D03D5009085C7 /* Android.mk in Resources */,
+				0AE2B93C202D3B4000DBF4BF /* html5.js in Resources */,
 				0A9494F6202D03D5009085C7 /* repo.prop in Resources */,
 				DF16424F1F0CDFD70009DE88 /* Main.storyboard in Resources */,
 			);
