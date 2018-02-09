@@ -494,7 +494,7 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	return JNI_VERSION_1_6;
 } */
 
-void redirectStdioToLog() {
+/* void redirectStdioToLog() {
   setvbuf(stdout, 0, _IOLBF, 0);
   setvbuf(stderr, 0, _IONBF, 0);
 
@@ -512,7 +512,7 @@ void redirectStdioToLog() {
       NSLog(@"%s", buf);
     }
   }, pfd[0]).detach();
-}
+} */
 
 
 #ifdef __cplusplus
@@ -603,7 +603,7 @@ void NodeService_onDrawFrame
 std::function<void (node::NodeService *nodeService)> nodeServiceInitFunction;
 void NodeService_start
 (const char *binPathString, const char *jsPathString, const char *libPathString, const char *urlString, const char *vrModeString, int vrTexture) {
-  redirectStdioToLog();
+  // redirectStdioToLog();
 
   canvas::Quartz2DContextFactory *canvasContextFactory = new canvas::Quartz2DContextFactory(1);
   CanvasRenderingContext2D::InitalizeStatic(canvasContextFactory);
