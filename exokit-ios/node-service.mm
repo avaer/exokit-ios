@@ -437,12 +437,12 @@ void callFunction(const char *funcname, const int argc, Local<Value> argv[]) {
   Local<Function> jsfunc = Local<Function>::Cast(jsfunc_val);
 
   // call function, 'this' points to global object
-  TryCatch try_catch;
+  Nan::TryCatch try_catch;
   Local<Value> result = jsfunc->Call(global, argc, argv);
 
   if (result.IsEmpty()) {
-    String::Utf8Value error(try_catch.Exception());
-    String::Utf8Value stacktrace(try_catch.StackTrace());
+    // String::Utf8Value error(try_catch.Exception());
+    // String::Utf8Value stacktrace(try_catch.StackTrace());
     //LOGI("Error calling %s: %s:\n%s",funcname,*error,*stacktrace);
   } else {
     //LOGI("%s called",funcname);
