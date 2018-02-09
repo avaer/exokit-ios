@@ -38,6 +38,7 @@
 		0ACFE84F202D23890088926D /* NodeMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACFE84B202D22EC0088926D /* NodeMobile.framework */; };
 		0ACFE850202D23890088926D /* NodeMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACFE84B202D22EC0088926D /* NodeMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AE2B93C202D3B4000DBF4BF /* html5.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AE2B93B202D3B4000DBF4BF /* html5.js */; };
+		0AE2B93E202D4E3A00DBF4BF /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = 0AE2B93D202D4E3A00DBF4BF /* package.json */; };
 		DF1642491F0CDFD70009DE88 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1642481F0CDFD70009DE88 /* AppDelegate.m */; };
 		DF16424C1F0CDFD70009DE88 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF16424B1F0CDFD70009DE88 /* ViewController.m */; };
 		DF16424F1F0CDFD70009DE88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF16424D1F0CDFD70009DE88 /* Main.storyboard */; };
@@ -62,6 +63,15 @@
 				0ACFE850202D23890088926D /* NodeMobile.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0AE2B942202D5CF500DBF4BF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -323,6 +333,7 @@
 		0ACFE83A202D14C20088926D /* v8-platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "v8-platform.h"; sourceTree = "<group>"; };
 		0ACFE84B202D22EC0088926D /* NodeMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NodeMobile.framework; sourceTree = "<group>"; };
 		0AE2B93B202D3B4000DBF4BF /* html5.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = html5.js; sourceTree = "<group>"; };
+		0AE2B93D202D4E3A00DBF4BF /* package.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
 		DF1642441F0CDFD70009DE88 /* exokit-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "exokit-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1642471F0CDFD70009DE88 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DF1642481F0CDFD70009DE88 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1128,6 +1139,13 @@
 			path = "node-mobile";
 			sourceTree = "<group>";
 		};
+		0AE2B944202D5D2E00DBF4BF /* node_modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = node_modules;
+			sourceTree = "<group>";
+		};
 		8A76C1DB1CDDA5F567B47895 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1157,6 +1175,7 @@
 		DF1642461F0CDFD70009DE88 /* exokit-ios */ = {
 			isa = PBXGroup;
 			children = (
+				0AE2B944202D5D2E00DBF4BF /* node_modules */,
 				0A9493A3202D03D4009085C7 /* deps */,
 				0ABCD851202BC5940022BBF3 /* node-service.h */,
 				0A1F675B202B886E00113F90 /* node-service.mm */,
@@ -1177,6 +1196,7 @@
 				DF1642641F0E15E60009DE88 /* Anchor.vsh */,
 				DF1642621F0CE8B90009DE88 /* Camera.vsh */,
 				DF1642601F0CE8AD0009DE88 /* Camera.fsh */,
+				0AE2B93D202D4E3A00DBF4BF /* package.json */,
 				0AE2B93B202D3B4000DBF4BF /* html5.js */,
 			);
 			path = "exokit-ios";
@@ -1189,6 +1209,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF16425A1F0CDFD70009DE88 /* Build configuration list for PBXNativeTarget "exokit-ios" */;
 			buildPhases = (
+				0AE2B941202D548C00DBF4BF /* Npm install */,
+				0AE2B942202D5CF500DBF4BF /* CopyFiles */,
 				DF1642401F0CDFD70009DE88 /* Sources */,
 				DF1642411F0CDFD70009DE88 /* Frameworks */,
 				DF1642421F0CDFD70009DE88 /* Resources */,
@@ -1254,6 +1276,7 @@
 				0A9494F2202D03D5009085C7 /* config.gypi in Resources */,
 				DF1642671F0E15EE0009DE88 /* Anchor.fsh in Resources */,
 				0A9494F4202D03D5009085C7 /* Android.mk in Resources */,
+				0AE2B93E202D4E3A00DBF4BF /* package.json in Resources */,
 				0AE2B93C202D3B4000DBF4BF /* html5.js in Resources */,
 				0A9494F6202D03D5009085C7 /* repo.prop in Resources */,
 				DF16424F1F0CDFD70009DE88 /* Main.storyboard in Resources */,
@@ -1261,6 +1284,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0AE2B941202D548C00DBF4BF /* Npm install */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Npm install";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "if [ -e ~/.bash_profile ]; then\n  source ~/.bash_profile;\nelif [ -e ~/.profile ]; then\n source ~/.profile;\nfi;\n\ncd \"$SRCROOT/exokit-ios\" && npm install . --no-package-lock && cp -R node_modules \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\" && ls -la \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DF1642401F0CDFD70009DE88 /* Sources */ = {
