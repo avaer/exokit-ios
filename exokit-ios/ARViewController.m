@@ -6,18 +6,18 @@
 //  Copyright © 2017年 ZhangXiaoJun. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "ARViewController.h"
 #import <ARKit/ARKit.h>
 #import "ARRenderer.h"
 
-@interface ViewController ()
+@interface ARViewController ()
 @property (nonatomic, strong) ARSession *session;
 @property (nonatomic, strong) id<ARSessionDelegate, GLKViewDelegate> renderer;
 @property (weak, nonatomic) IBOutlet GLKView *glView;
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @end
 
-@implementation ViewController
+@implementation ARViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

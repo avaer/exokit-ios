@@ -1224,7 +1224,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = ZhangXiaoJun;
+				ORGANIZATIONNAME = Exokit;
 				TargetAttributes = {
 					DF1642431F0CDFD70009DE88 = {
 						CreatedOnToolsVersion = 9.0;
