@@ -6,7 +6,7 @@
 //  Copyright © 2017年 ZhangXiaoJun. All rights reserved.
 //
 
-#import "ARRenderer.h"
+#import "NodeRenderer.h"
 #import "GLProgram.h"
 #import "node-service.h"
 #import <OpenGLES/ES2/gl.h>
@@ -17,40 +17,6 @@ struct ARData {
     GLfloat texCoord[2];
     GLfloat normal[3];
     GLfloat color[4];
-};
-
-static const struct ARData kARDatas[]=
-{
-    0.038,     0.038 ,    0.038 , 0.000000   ,  0.000000  ,   1.00000   ,  0.00000  ,   0.00000,0,1,0,1,
-    0.038 ,    0.038 ,   -0.038 , 1.000000  ,   0.000000,     1.00000  ,   0.00000  ,   0.00000,0,1,0,1,
-    0.038 ,   -0.038 ,    0.038 ,0.000000  ,   1.000000,     1.00000  ,   0.00000  ,   0.00000,0,1,0,1,
-    0.038 ,   -0.038  ,  -0.038  ,1.000000  ,   1.000000,     1.00000  ,   0.00000   ,  0.00000,0,1,0,1,
-    -0.038 ,    0.038  ,  -0.038 ,0.000000 ,    0.000000,    -1.00000 ,    0.00000  ,   0.00000,1,0,0,1,
-    -0.038 ,    0.038  ,   0.038 ,1.000000   ,  0.000000,    -1.00000 ,    0.00000 ,    0.00000,1,0,0,1,
-    -0.038 ,   -0.038  ,  -0.038 ,0.000000  ,   1.000000,    -1.00000  ,   0.00000  ,   0.00000,1,0,0,1,
-    -0.038 ,   -0.038 ,    0.038 ,1.000000 ,    1.000000,    -1.00000  ,   0.00000   ,  0.00000,1,0,0,1,
-    -0.038 ,    0.038  ,  -0.038 ,0.000000  ,   0.000000,     0.00000  ,   1.00000  ,   0.00000,0,0,1,1,
-    0.038 ,    0.038   , -0.038 ,1.000000   ,  0.000000,     0.00000  ,   1.00000   ,  0.00000,0,0,1,1,
-    -0.038 ,    0.038 ,    0.038 ,0.000000 ,    1.000000,     0.00000 ,    1.00000 ,    0.00000,0,0,1,1,
-    0.038 ,    0.038 ,    0.038 ,1.000000  ,   1.000000,     0.00000  ,   1.00000  ,   0.00000,0,0,1,1,
-    -0.038 ,   -0.038,     0.038 ,0.000000 ,    0.000000,     0.00000 ,   -1.00000 ,    0.00000,1,0.5,0,1,
-    0.038  ,  -0.038  ,   0.038 ,1.000000   ,  0.000000,     0.00000  ,  -1.00000  ,   0.00000,1,0.5,0,1,
-    -0.038 ,   -0.038  ,  -0.038 ,0.000000  ,   1.000000,     0.00000  ,  -1.00000 ,    0.00000,1,0.5,0,1,
-    0.038 ,   -0.038  ,  -0.038 ,1.000000   ,  1.000000,     0.00000   , -1.00000   ,  0.00000,1,0.5,0,1,
-    -0.038 ,    0.038  ,   0.038 ,0.000000  ,   0.000000,    -0.00000 ,    0.00000 ,    1.00000,1,1,0,1,
-    0.038  ,   0.038  ,   0.038 ,1.000000   ,  0.000000,    -0.00000   ,  0.00000   ,  1.00000,1,1,0,1,
-    -0.038   , -0.038 ,    0.038 ,0.000000  ,   1.000000,    -0.00000  ,   0.00000  ,   1.00000,1,1,0,1,
-    0.038  ,  -0.038  ,   0.038 ,1.000000  ,   1.000000,    -0.00000  ,   0.00000  ,   1.00000,1,1,0,1,
-    0.038  ,   0.038  ,  -0.038 ,0.000000  ,   0.000000,    -0.00000  ,  -0.00000 ,   -1.00000,1,1,1,1,
-    -0.038 ,    0.038 ,   -0.038 , 1.000000  ,   0.000000,    -0.00000 ,   -0.00000  ,  -1.00000,1,1,1,1,
-    0.038  , -0.038 ,   -0.038    ,0.000000  ,   1.000000,    -0.00000  ,  -0.00000  ,  -1.00000,1,1,1,1,
-    -0.038  ,  -0.038 ,   -0.038   ,1.000000  ,   1.000000,    -0.00000   , -0.00000 ,   -1.00000,1,1,1,1,
-};
-
-static const GLubyte kARDataIndices[] = {
-    0,3,1,0,2,3,4,7,5,4,6,7,8,11,9,8,10,11,12,15,13,12,14,15,16,19,17,16,18,19,
-    20,23,21,20,22,23
-    
 };
 
 // The max number of command buffers in flight
@@ -82,10 +48,10 @@ typedef struct {
 // The 256 byte aligned size of our uniform structures
 static const size_t kAlignedSharedUniformsSize = (sizeof(SharedUniforms) & ~0xFF) + 0x100;
 static const size_t kAlignedInstanceUniformsSize = ((sizeof(InstanceUniforms) * kMaxAnchorInstanceCount) & ~0xFF) + 0x100;
-static const int FRAME_TIME_MAX = 1000 / 60 * 0.9;
+static const int FRAME_TIME_MAX = 1000 / 60;
 static const int FRAME_TIME_MIN = FRAME_TIME_MAX / 5;
 
-@interface ARRenderer ()
+@interface NodeRenderer ()
 {
     void *_sharedUniformBufferAddress;
     void *_anchorUniformBufferAddress;
@@ -105,14 +71,13 @@ static const int FRAME_TIME_MIN = FRAME_TIME_MAX / 5;
     // MetalKit mesh containing vertex data and index buffer for our anchor geometry
     GLKMesh *_cubeMesh;
     EAGLContext *_context;
-    EAGLContext *_context2;
     CVOpenGLESTextureCacheRef _coreVideoTextureCache;
   
     long lastFrameTime;
 }
 @end
 
-@implementation ARRenderer
+@implementation NodeRenderer
 
 - (void)dealloc
 {
@@ -121,11 +86,10 @@ static const int FRAME_TIME_MIN = FRAME_TIME_MAX / 5;
     }
 }
 
-- (instancetype)initWithSession:(ARSession *)session
+- (instancetype)init
 {
     self = [super init];
     if (self) {
-        _sesstion = session;
         for(int i = 0; i < kMaxAnchorInstanceCount; i++){
             const char *name = [[NSString stringWithFormat:@"modelMatrix[%d]",i] UTF8String];
             char *copyName = malloc(strlen(name) + 1);
@@ -134,131 +98,37 @@ static const int FRAME_TIME_MIN = FRAME_TIME_MAX / 5;
         }
         
         _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+
         if (!_context || ![EAGLContext setCurrentContext:_context]){
             NSAssert(NO, @"Failed to init gl context !");
             return nil;
         }
+      
+        const char *binPath = "node";
+        NSString *mainBundlePathString = [[NSBundle mainBundle] bundlePath];
+        NSString *scriptPathString = [NSString stringWithFormat:@"%@/%@", mainBundlePathString, @"html5.js"];
+        const char *scriptPath = [scriptPathString UTF8String];
+        const char *libPath = "lib";
+        const char *dataPath = "data";
+        const char *url = "http://192.168.0.13:8000/?e=hmd";
+        const char *vrMode = "ar";
+        NodeService_start(binPath, scriptPath, libPath, dataPath, url, vrMode, -1, -1);
+      
+        // NodeService_tick(5000);
         
         _anchorUniformBuffer = malloc(kAlignedInstanceUniformsSize * kMaxBuffersInFlight);
         _sharedUniformBuffer = malloc(kAlignedSharedUniformsSize * kMaxBuffersInFlight);
         
         _sceneSize = CGSizeZero;
-        
-        _anchorProgram = [[GLProgram alloc] initWithVertexShaderFilename:@"Anchor"
-                                                  fragmentShaderFilename:@"Anchor"];
-        
-        if (!_anchorProgram.initialized)
-        {
-            [_anchorProgram addAttribute:@"position"];
-            [_anchorProgram addAttribute:@"texCoord"];
-            [_anchorProgram addAttribute:@"normal"];
-            [_anchorProgram addAttribute:@"color"];
-            // Link program.
-            if (![_anchorProgram link]) {
-                NSLog(@"Link failed");
-                
-                NSString *progLog = [_anchorProgram programLog];
-                NSLog(@"Program Log: %@", progLog);
-                
-                NSString *fragLog = [_anchorProgram fragmentShaderLog];
-                NSLog(@"Frag Log: %@", fragLog);
-                
-                NSString *vertLog = [_anchorProgram vertexShaderLog];
-                NSLog(@"Vert Log: %@", vertLog);
-                
-                _anchorProgram = nil;
-            }
-        }
-        
-        _program = [[GLProgram alloc] initWithVertexShaderFilename:@"Camera"
-                                            fragmentShaderFilename:@"Camera"];
-        
-        if (!_program.initialized)
-        {
-            [_program addAttribute:@"position"];
-            [_program addAttribute:@"texCoord"];
-            // Link program.
-            if (![_program link]) {
-                NSLog(@"Link failed");
-                
-                NSString *progLog = [_program programLog];
-                NSLog(@"Program Log: %@", progLog);
-                
-                NSString *fragLog = [_program fragmentShaderLog];
-                NSLog(@"Frag Log: %@", fragLog);
-                
-                NSString *vertLog = [_program vertexShaderLog];
-                NSLog(@"Vert Log: %@", vertLog);
-                
-                _program = nil;
-            }
-        }
-        
-        glGenBuffers(1, &_cubeBuffer);
-        glBindBuffer(GL_ARRAY_BUFFER, _cubeBuffer);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(kARDatas), kARDatas, GL_STATIC_DRAW);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        
-        glGenBuffers(1, &_cubeIndicesBuffer);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _cubeIndicesBuffer);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(kARDataIndices), kARDataIndices, GL_STATIC_DRAW);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-      
-        CVReturn err = CVOpenGLESTextureCacheCreate(kCFAllocatorDefault, NULL, [self context], NULL, &_glTextureCache);
-        NSAssert(err == 0, @"Failed to create CVOpenGLESTexture!");
     }
-  
-    _context2 = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-    if (!_context2 || ![EAGLContext setCurrentContext:_context2]){
-      NSAssert(NO, @"Failed to init gl context 2 !");
-      return nil;
-    }
-  
-    const char *binPath = "node";
-    NSString *mainBundlePathString = [[NSBundle mainBundle] bundlePath];
-    NSString *scriptPathString = [NSString stringWithFormat:@"%@/%@", mainBundlePathString, @"html5.js"];
-    const char *scriptPath = [scriptPathString UTF8String];
-    const char *libPath = "lib";
-    NSArray *dataPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *dataPathString = [dataPaths objectAtIndex:0];
-    const char *dataPath = [dataPathString UTF8String];
-    const char *url = "http://192.168.0.13:8000/?e=hmd";
-    const char *vrMode = "ar";
-    NodeService_start(binPath, scriptPath, libPath, dataPath, url, vrMode, -1, -1);
-  
     return self;
-}
-
-- (void)createTextureFromPixelBuffer:(CVPixelBufferRef)pixelBuffer
-                       outputTexture:(CVOpenGLESTextureRef *)outputTexture
-                          pixeFormat:(GLenum)pixelFormat
-                          planeIndex:(NSUInteger)planeIndex{
-    GLsizei width = (GLsizei)CVPixelBufferGetWidthOfPlane(pixelBuffer, planeIndex);
-    GLsizei height = (GLsizei)CVPixelBufferGetHeightOfPlane(pixelBuffer, planeIndex);
-    
-    CVReturn status = CVOpenGLESTextureCacheCreateTextureFromImage(NULL,
-                                                                   _glTextureCache,
-                                                                   pixelBuffer,
-                                                                   NULL,
-                                                                   GL_TEXTURE_2D,
-                                                                   pixelFormat,
-                                                                   width,
-                                                                   height,
-                                                                   pixelFormat,
-                                                                   GL_UNSIGNED_BYTE,
-                                                                   planeIndex,
-                                                                   outputTexture);
-    
-    NSAssert(status == kCVReturnSuccess, @"createTextureFromPixelBuffer failed");
 }
 
 - (void)drawCameraFrame:(ARFrame *)frame
 {
     [_context setDebugLabel:@"Draw Camera Frame"];
-  
-    [EAGLContext setCurrentContext:_context];
     
-    glDisable(GL_CULL_FACE);
+    /* glDisable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_ALWAYS);
     
@@ -312,11 +182,9 @@ static const int FRAME_TIME_MIN = FRAME_TIME_MAX / 5;
     glUniform1i(capturedImageTextureCbCr, 1);
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-  
-    glFlush();
     
     CFRelease(_capturedImageTextureY);
-    CFRelease(_capturedImageTextureCbCr);
+    CFRelease(_capturedImageTextureCbCr); */
     
     [_context setDebugLabel:nil];
 }
@@ -405,8 +273,6 @@ static const int FRAME_TIME_MIN = FRAME_TIME_MAX / 5;
 
 - (void)_drawAnchorGeometry
 {
-    [EAGLContext setCurrentContext:_context2];
-  
     SharedUniforms *uniforms = (SharedUniforms *)_sharedUniformBufferAddress;
     float viewmtx[] = {
       uniforms->projectionMatrix.columns[0][0],
@@ -450,77 +316,25 @@ static const int FRAME_TIME_MIN = FRAME_TIME_MAX / 5;
       _anchorCenter[2],
     };
     NodeService_onDrawFrame(viewmtx, projmtx, centerArray);
-  
-    glFlush();
-  
-    /* glEnable(GL_CULL_FACE);
-    glCullFace(GL_FRONT);
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
-    glDepthMask(GL_TRUE);
-    glClear(GL_DEPTH_BUFFER_BIT);
-    
-    [_anchorProgram use];
- 
-    GLuint position = [_anchorProgram attributeIndex:@"position"];
-    GLuint texCoord = [_anchorProgram attributeIndex:@"texCoord"];
-    GLuint normal = [_anchorProgram attributeIndex:@"normal"];
-    GLuint color = [_anchorProgram attributeIndex:@"color"];
-    
-    
-    glEnableVertexAttribArray(position);
-    glEnableVertexAttribArray(texCoord);
-    glEnableVertexAttribArray(normal);
-    glEnableVertexAttribArray(color);
-    
-    for(int i = 0; i < _anchorInstanceCount; i++){
-        glUniformMatrix4fv([_anchorProgram uniformIndex:@"modelMatrix"], 1, GL_FALSE, (const GLfloat *)&_anchorUniformBuffer[i].modelMatrix);
-        SharedUniforms *uniforms = (SharedUniforms *)_sharedUniformBufferAddress;
-        
-        glUniformMatrix4fv([_anchorProgram uniformIndex:@"projectionMatrix"], 1, GL_FALSE, (const GLfloat *)&uniforms->projectionMatrix);
-        glUniformMatrix4fv([_anchorProgram uniformIndex:@"viewMatrix"], 1, GL_FALSE, (const GLfloat *)&uniforms->viewMatrix);
-        glUniform3fv([_anchorProgram uniformIndex:@"ambientLightColor"], 1, (const GLfloat *)&uniforms->ambientLightColor);
-        glUniform3fv([_anchorProgram uniformIndex:@"directionalLightDirection"], 1, (const GLfloat *)&uniforms->directionalLightDirection);
-        glUniform3fv([_anchorProgram uniformIndex:@"directionalLightColor"], 1, (const GLfloat *)&uniforms->directionalLightColor);
-        glUniform1f([_anchorProgram uniformIndex:@"materialShininess"], uniforms->materialShininess);
-    
-        
-        glBindBuffer(GL_ARRAY_BUFFER, _cubeBuffer);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _cubeIndicesBuffer);
-        
-        
-        glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, sizeof(struct ARData), NULL);
-        glVertexAttribPointer(texCoord, 2, GL_FLOAT, GL_FALSE, sizeof(struct ARData), (GLvoid *)(sizeof(GLfloat) * 3));
-        glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, sizeof(struct ARData), (GLvoid *)(sizeof(GLfloat) * 5));
-        glVertexAttribPointer(color, 4, GL_FLOAT, GL_FALSE, sizeof(struct ARData), (GLvoid *)(sizeof(GLfloat) * 8));
-        
-        glDrawElements(GL_TRIANGLES, sizeof(kARDataIndices) / sizeof(GLubyte), GL_UNSIGNED_BYTE, NULL);
-        
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-    } */
 }
 
 #pragma mark Delegate
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
-{
-    ARFrame *frame = _sesstion.currentFrame;
-    if (!frame) {
-        return;
-    }
-  
-    long now = CFAbsoluteTimeGetCurrent() * 1000.0;
-    int timeout = (int)MIN(MAX(FRAME_TIME_MAX - (now - lastFrameTime), FRAME_TIME_MIN), FRAME_TIME_MAX);
-    NodeService_tick(timeout);
-    lastFrameTime = now;
-    
+{    
     _sceneSize = view.frame.size;
     [view bindDrawable];
-    [self _updateBufferStates];
-    [self _updateGameState:frame];
-    [self drawCameraFrame:frame];
-    [self _drawAnchorGeometry];
+    // [self _updateBufferStates];
+    // [self _updateGameState:frame];
+    // [self drawCameraFrame:frame];
+    // [self _drawAnchorGeometry];
+  
+    printf("node frame\n");
+  
+    long now = CFAbsoluteTimeGetCurrent() * 1000;
+    int timeout = (int)MIN(MAX(FRAME_TIME_MAX - (now - lastFrameTime), FRAME_TIME_MIN), FRAME_TIME_MAX);
+    lastFrameTime = now;
+    NodeService_tick(timeout);
 }
 
 @end

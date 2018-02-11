@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  ViewController.h
 //  ARExample
 //
 //  Created by ZhangXiaoJun on 2017/7/5.
@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-// #import "node-service.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface NodeViewController : UIViewController
 
 
 @end

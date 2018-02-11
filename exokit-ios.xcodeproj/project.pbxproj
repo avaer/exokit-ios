@@ -39,8 +39,10 @@
 		0ACFE850202D23890088926D /* NodeMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACFE84B202D22EC0088926D /* NodeMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0AE2B93C202D3B4000DBF4BF /* html5.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AE2B93B202D3B4000DBF4BF /* html5.js */; };
 		0AE2B93E202D4E3A00DBF4BF /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = 0AE2B93D202D4E3A00DBF4BF /* package.json */; };
+		0AE2BCD5202E4A5E00DBF4BF /* NodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE2BCD1202E4A5C00DBF4BF /* NodeViewController.m */; };
+		0AE2BCD6202E4A5E00DBF4BF /* NodeRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE2BCD4202E4A5D00DBF4BF /* NodeRenderer.m */; };
 		DF1642491F0CDFD70009DE88 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1642481F0CDFD70009DE88 /* AppDelegate.m */; };
-		DF16424C1F0CDFD70009DE88 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF16424B1F0CDFD70009DE88 /* ViewController.m */; };
+		DF16424C1F0CDFD70009DE88 /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF16424B1F0CDFD70009DE88 /* ARViewController.m */; };
 		DF16424F1F0CDFD70009DE88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF16424D1F0CDFD70009DE88 /* Main.storyboard */; };
 		DF1642511F0CDFD70009DE88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF1642501F0CDFD70009DE88 /* Assets.xcassets */; };
 		DF1642541F0CDFD70009DE88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1642521F0CDFD70009DE88 /* LaunchScreen.storyboard */; };
@@ -334,11 +336,15 @@
 		0ACFE84B202D22EC0088926D /* NodeMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NodeMobile.framework; sourceTree = "<group>"; };
 		0AE2B93B202D3B4000DBF4BF /* html5.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = html5.js; sourceTree = "<group>"; };
 		0AE2B93D202D4E3A00DBF4BF /* package.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		0AE2BCD1202E4A5C00DBF4BF /* NodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeViewController.m; sourceTree = "<group>"; };
+		0AE2BCD2202E4A5C00DBF4BF /* NodeRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeRenderer.h; sourceTree = "<group>"; };
+		0AE2BCD3202E4A5D00DBF4BF /* NodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeViewController.h; sourceTree = "<group>"; };
+		0AE2BCD4202E4A5D00DBF4BF /* NodeRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeRenderer.m; sourceTree = "<group>"; };
 		DF1642441F0CDFD70009DE88 /* exokit-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "exokit-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1642471F0CDFD70009DE88 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DF1642481F0CDFD70009DE88 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DF16424A1F0CDFD70009DE88 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DF16424B1F0CDFD70009DE88 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DF16424A1F0CDFD70009DE88 /* ARViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARViewController.h; sourceTree = "<group>"; };
+		DF16424B1F0CDFD70009DE88 /* ARViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARViewController.m; sourceTree = "<group>"; };
 		DF16424E1F0CDFD70009DE88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DF1642501F0CDFD70009DE88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF1642531F0CDFD70009DE88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -1175,15 +1181,19 @@
 				DF8FFAA01F87D941003004E0 /* GLProgram.m */,
 				DF1642471F0CDFD70009DE88 /* AppDelegate.h */,
 				DF1642481F0CDFD70009DE88 /* AppDelegate.m */,
-				DF16424A1F0CDFD70009DE88 /* ViewController.h */,
-				DF16424B1F0CDFD70009DE88 /* ViewController.m */,
+				DF16425D1F0CE0360009DE88 /* ARRenderer.h */,
+				DF16425E1F0CE0360009DE88 /* ARRenderer.m */,
+				DF16424A1F0CDFD70009DE88 /* ARViewController.h */,
+				DF16424B1F0CDFD70009DE88 /* ARViewController.m */,
+				0AE2BCD2202E4A5C00DBF4BF /* NodeRenderer.h */,
+				0AE2BCD4202E4A5D00DBF4BF /* NodeRenderer.m */,
+				0AE2BCD3202E4A5D00DBF4BF /* NodeViewController.h */,
+				0AE2BCD1202E4A5C00DBF4BF /* NodeViewController.m */,
 				DF16424D1F0CDFD70009DE88 /* Main.storyboard */,
 				DF1642501F0CDFD70009DE88 /* Assets.xcassets */,
 				DF1642521F0CDFD70009DE88 /* LaunchScreen.storyboard */,
 				DF1642551F0CDFD70009DE88 /* Info.plist */,
 				DF1642561F0CDFD70009DE88 /* main.m */,
-				DF16425D1F0CE0360009DE88 /* ARRenderer.h */,
-				DF16425E1F0CE0360009DE88 /* ARRenderer.m */,
 				DF1642651F0E15E60009DE88 /* Anchor.fsh */,
 				DF1642641F0E15E60009DE88 /* Anchor.vsh */,
 				DF1642621F0CE8B90009DE88 /* Camera.vsh */,
@@ -1300,10 +1310,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A9494EC202D03D5009085C7 /* imageBitmap-context.cc in Sources */,
-				DF16424C1F0CDFD70009DE88 /* ViewController.m in Sources */,
+				DF16424C1F0CDFD70009DE88 /* ARViewController.m in Sources */,
 				0A9494E8202D03D5009085C7 /* FloydSteinberg.cpp in Sources */,
+				0AE2BCD5202E4A5E00DBF4BF /* NodeViewController.m in Sources */,
 				DF16425F1F0CE0360009DE88 /* ARRenderer.m in Sources */,
 				0A1F675C202B886E00113F90 /* node-service.mm in Sources */,
+				0AE2BCD6202E4A5E00DBF4BF /* NodeRenderer.m in Sources */,
 				0A9494EF202D03D5009085C7 /* canvas-context.cc in Sources */,
 				DF8FFAA21F87D942003004E0 /* GLProgram.m in Sources */,
 				0A9494DC202D03D5009085C7 /* webgl.cc in Sources */,
