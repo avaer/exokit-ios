@@ -1139,13 +1139,6 @@
 			path = "node-mobile";
 			sourceTree = "<group>";
 		};
-		0AE2B944202D5D2E00DBF4BF /* node_modules */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = node_modules;
-			sourceTree = "<group>";
-		};
 		8A76C1DB1CDDA5F567B47895 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1175,7 +1168,6 @@
 		DF1642461F0CDFD70009DE88 /* exokit-ios */ = {
 			isa = PBXGroup;
 			children = (
-				0AE2B944202D5D2E00DBF4BF /* node_modules */,
 				0A9493A3202D03D4009085C7 /* deps */,
 				0ABCD851202BC5940022BBF3 /* node-service.h */,
 				0A1F675B202B886E00113F90 /* node-service.mm */,
