@@ -602,7 +602,7 @@ void NodeService_onDrawFrame
 
 std::function<void (node::NodeService *nodeService)> nodeServiceInitFunction;
 void NodeService_start
-(const char *binPathString, const char *jsPathString, const char *libPathString, const char *urlString, const char *vrModeString, int vrTexture) {
+(const char *binPathString, const char *jsPathString, const char *libPathString, const char *dataPathString, const char *urlString, const char *vrModeString, int vrTexture, int vrTexture2) {
   // redirectStdioToLog();
 
   canvas::Quartz2DContextFactory *canvasContextFactory = new canvas::Quartz2DContextFactory(1);
@@ -612,6 +612,9 @@ void NodeService_start
   vrTextureStringStream << vrTexture;
   const char *vrTextureString = vrTextureStringStream.str().c_str();
 
+  std::stringstream vrTexture2StringStream;
+  vrTexture2StringStream << vrTexture2;
+  const char *vrTexture2String = vrTexture2StringStream.str().c_str();
   char argsString[4096];
   int i = 0;
 
@@ -626,6 +629,10 @@ void NodeService_start
   char *libPathArg = argsString + i;
   strncpy(libPathArg, libPathString, sizeof(argsString) - i);
   i += strlen(libPathString) + 1;
+  
+  char *dataPathArg = argsString + i;
+  strncpy(dataPathArg, dataPathString, sizeof(argsString) - i);
+  i += strlen(dataPathString) + 1;
 
   char *urlArg = argsString + i;
   strncpy(urlArg, urlString, sizeof(argsString) - i);
@@ -639,7 +646,11 @@ void NodeService_start
   strncpy(vrTextureArg, vrTextureString, sizeof(argsString) - i);
   i += strlen(vrTextureString) + 1;
 
-  char *args[] = {binPathArg, jsPathArg, libPathArg, urlArg, vrModeArg, vrTextureArg};
+  char *vrTexture2Arg = argsString + i;
+  strncpy(vrTexture2Arg, vrTexture2String, sizeof(argsString) - i);
+  i += strlen(vrTexture2String) + 1;
+
+  char *args[] = {binPathArg, jsPathArg, libPathArg, dataPathArg, urlArg, vrModeArg, vrTextureArg, vrTexture2Arg};
   // node::Start(3, args);
   // service = new node::NodeService(3, args);
 
